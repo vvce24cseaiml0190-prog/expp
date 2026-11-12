@@ -1,0 +1,20 @@
+name: Maven Build
+on:
+push:
+branches: [ &quot;main&quot; ]
+pull_request:
+branches: [ &quot;main&quot; ]
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout source code
+uses: actions/checkout@v4
+- name: Set up JDK
+uses: actions/setup-java@v4
+with:
+java-version: &#39;17&#39;
+distribution: &#39;temurin&#39;
+cache: maven
+- name: Build with Maven
+run: mvn clean package
